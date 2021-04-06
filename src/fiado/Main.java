@@ -5,16 +5,30 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		// array é conjunto finito e ordenado
-		int[] fiados=new int[10];
-		//	fiados[0]=12;
-		//	fiados[3]=87;
+		
+		int[] fiados=new int[5];
 		
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Informe o nome do Cliente: ");
 		String nome = scanner.nextLine();
-		System.out.print("Informe o valor da compra: ");
-		fiados[0] = Integer.valueOf(scanner.nextLine());
+		
+		int fiado;
+		for (int i =0; i<fiados.length; i++) {
+			System.out.print("Informe o valor da compra: ");
+			fiado = Integer.valueOf(scanner.nextLine());
+			
+			if (fiado==-1) {
+				break;
+			}
+			while (fiado==0) {
+				System.out.println("Insira outro valor.");
+				System.out.print("Novo valor: ");
+				fiado = Integer.valueOf(scanner.nextLine());
+				
+			}
+			fiados [i]=fiado;
+		}
+		
 		
 		int total=somaWhile(fiados);
 				
@@ -31,22 +45,4 @@ public class Main {
 		return total;
 }
 }
-//	public static int somaFor(int[] fiados) {
-//		int total = 0;
-//		for (int i=0; i< fiados.length; i++){
-//			total += fiados[i];
-//		}
-//		return total;
-//	}
 
-
-//	public static int somaForEach(int[] fiados) {
-//		int total = 0;
-//		for (int fiado : fiados) {
-//			total += fiado;
-			
-//		}
-//		return total;
-//	}
-	
-//}
