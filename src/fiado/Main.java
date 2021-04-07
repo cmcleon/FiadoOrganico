@@ -5,56 +5,48 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Consumidor consumidor = new Consumidor();
-		Consumidor consumidor2= new Consumidor();
-		
-		consumidor.fiados = new int[5];
+				
+		//consumidor.fiados = new int[5];
 		
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Informe o nome do Cliente: ");
-		consumidor.nome= scanner.nextLine();
 		
-		int fiado;
-		for (int i =0; i<consumidor.fiados.length; i++) {
-			System.out.print("Informe o valor da compra: ");
+		String nome= scanner.nextLine();
+		Consumidor consumidor = new Consumidor(nome);
+		
+		System.out.print("Telefone: ");
+		String tel = scanner.nextLine();
+		consumidor.setTel(tel);
+		
+		System.out.print("Informe o valor da compra: ");
+		int fiado = Integer.valueOf(scanner.nextLine());
+		
+		while (fiado!=-1) {
+			if (fiado==0) {
+				System.out.print("Insira outro valor:");
+				}
+			
+			else {
+				consumidor.registrarFiados(fiado);
+				System.out.print("Informe o valor da compra: ");
+				
+			}
+			
 			fiado = Integer.valueOf(scanner.nextLine());
-			
-			if (fiado==-1) {
-				break;
-			}
-			while (fiado==0) {
-				System.out.println("Insira outro valor.");
-				System.out.print("Novo valor: ");
-				fiado = Integer.valueOf(scanner.nextLine());
-				
-			}
-			consumidor.fiados [i]=fiado;
 		}
-		//String valores="";
-		for (int i =0; i<consumidor.fiados.length; i++) {
-			if (consumidor.fiados[i] >= 100) {
-				System.out.println("Compras onerosas: " + consumidor.fiados[i]);
-			//valores+= consumidor.fiados[i] + ", ";	
-			}
-			
-		}
+		System.out.println("-------");
+		int total=consumidor.getFiados();
+		consumidor.fiadosHund();
 		
-		//System.out.println("Compras onerosas: " + valores );
+		System.out.println();
+		System.out.println("-------");
 		
-		int total=somaWhile(consumidor.fiados);
-				
-		System.out.println("Cliente " + consumidor.nome  + " deve: " + total);
+		System.out.println("Cliente " + consumidor.getNome() + " deve: " + total);
+		System.out.println("Contato: " + consumidor.getTel());
+		
 	}
 	
-	public static int somaWhile(int[] fiados) {
-		int i = 0;
-		int total = 0;
-		while (i<fiados.length) {
-			total+=fiados[i]; //atalho para total = total + fiados[i];
-			i++; // atalho para i+=1; ou i=i+1;
-	}
-		return total;
-	}
+	
 }
 	
 
